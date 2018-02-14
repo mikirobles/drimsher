@@ -1,40 +1,37 @@
 <template>
   <section class="container">
-    <header>
-      <div class="buttons">
-        <img key="refresh" v-if="!isEditor" src="icons/refresh.svg" alt="refresh">
-        <img key="back" v-on:click="isEditor = !isEditor" v-else src="icons/back.svg" alt="go back">
-        <img v-bind:class="isEditor ? 'hidden' : ''" v-on:click="isEditor = !isEditor" src="icons/write.svg" alt="">
-      </div>
-      <h1 class="logo">
-        drimsher
-      </h1>
-    </header>
+    <app-header :isEditor="isEditor" :switchMode="switchMode"/>
     <transition name="fade" mode="out-in">
       <article key="dreamview" v-if="!isEditor">
           <p>{{dream}}</p>
       </article>
-      <article key="editor" v-else>
-        <editor @update-editor-text="(text) => {editorText = text}" />
-      </article>
+      <editor v-else />
     </transition>
   </section>
 </template>
 
 <script>
 import Editor from "../components/Editor";
+import AppHeader from "../components/AppHeader";
+
 export default {
   head: {
     title: "drimsher"
   },
   components: {
-    Editor
+    Editor,
+    AppHeader
   },
   data: () => ({
     dream:
       "Lorem ipsum dolor sit amet, at alienum fastidii vel, eu ius elit congue. Ad nam reque adolescens honestatis, per ex nostrud euripidis. Vim vidit disputando ei. Ad his ipsum reprimique, ex quis posidonium nam. \n Quando utinam delicatissimi nam cu, clita indoctum mei in. Harum urbanitas his eu, sit legere quaestio adipiscing ea. Quando utinam delicatissimi nam cu, clita indoctum mei in. Harum urbanitas his eu, sit legere quaestio adipiscing ea.",
     isEditor: false
-  })
+  }),
+  methods: {
+    switchMode() {
+      this.isEditor = !this.isEditor;
+    }
+  }
 };
 </script>
 
@@ -51,34 +48,16 @@ export default {
   font-family: "Avenir", sans-serif;
   line-height: 1.5;
   font-size: 18px;
+  transition: 0.2s ease all;
 }
 
-header {
-  position: relative;
-  margin: 1em 0;
-  width: 100%;
-  .logo {
-    text-align: center;
-  }
-  .buttons {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
 .container {
-  min-height: 100vh;
-  padding: 0 9vw;
+  padding: 0 25px;
   width: 100%;
   max-width: 870px;
   margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .logo {
   font-size: 2em;
@@ -92,24 +71,24 @@ article {
   width: 100%;
   min-height: calc(100vh - 90px);
   padding-top: 5vh;
-  p {
+  p,
+  span {
     white-space: pre-line;
     background-image: linear-gradient(-180deg, #550b39 0%, #640993 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    &::selection {
+      background: rgba(61, 219, 95, 0.637);
+    }
   }
 }
 
-textarea {
-  width: 100%;
-  height: 50vh;
-  padding: 0.5em;
-  border: 0;
-  resize: none;
-  color: #550b39;
-  &:focus {
-    outline: none;
-  }
+button {
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hidden {
