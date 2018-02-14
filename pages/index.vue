@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import fetch from 'isomorphic-fetch';
 import Editor from "../components/Editor";
 import AppHeader from "../components/AppHeader";
 
@@ -22,9 +23,10 @@ export default {
     Editor,
     AppHeader
   },
+  asyncData: async () => ({
+    dream: (await (await fetch('https://drimsher-backend-myvzbjpxev.now.sh/api/v1/post/random')).json()).content
+  }),
   data: () => ({
-    dream:
-      "Lorem ipsum dolor sit amet, at alienum fastidii vel, eu ius elit congue. Ad nam reque adolescens honestatis, per ex nostrud euripidis. Vim vidit disputando ei. Ad his ipsum reprimique, ex quis posidonium nam. \n Quando utinam delicatissimi nam cu, clita indoctum mei in. Harum urbanitas his eu, sit legere quaestio adipiscing ea. Quando utinam delicatissimi nam cu, clita indoctum mei in. Harum urbanitas his eu, sit legere quaestio adipiscing ea.",
     isEditor: false
   }),
   methods: {
@@ -36,21 +38,6 @@ export default {
 </script>
 
 <style lang="scss">
-@font-face {
-  font-family: "Avenir";
-  src: url("../static/fonts/AvenirNextLTPro-Regular.woff2") format("woff2"),
-    url("../static/fonts/AvenirNextLTPro-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-* {
-  font-family: "Avenir", sans-serif;
-  line-height: 1.5;
-  font-size: 18px;
-  transition: 0.2s ease all;
-}
-
 .container {
   padding: 0 25px;
   width: 100%;

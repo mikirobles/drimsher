@@ -3,12 +3,13 @@
         <textarea v-model="editorText" type="text" placeholder="Escribe aquí tu sueño." />
         <div class="info">
           <span v-bind:class="exceededLimit ? 'exceeded' : ''">{{ charsLeft }}</span>
-          <button><img v-bind:class="!sendAvailable ? 'disabled' : ''" src="../static/icons/send.svg" alt=""></button>
+          <button v-bind:disabled="!sendAvailable" v-on:click="publish"><img v-bind:class="!sendAvailable ? 'disabled' : ''" src="../static/icons/send.svg" alt=""></button>
         </div>
     </article>
 </template>
 
 <script>
+import fetch from 'isomorphic-fetch';
 const charsLimit = 450;
 export default {
   data: () => ({
@@ -25,6 +26,19 @@ export default {
       return (
         this.editorText.length <= charsLimit && this.editorText.length > 20
       );
+    }
+  },
+  methods: {
+    publish() {
+      fetch('https://drimsher-backend-myvzbjpxev.now.sh/api/v1/post', {
+        method: "POST",
+        headers: {
+			    "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: this.editorText
+        })
+      }).then(res => res.json()).then(console.log)
     }
   }
 };
