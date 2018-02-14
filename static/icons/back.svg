@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="31px" viewBox="0 0 19 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Fill 6</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#61A1FD" offset="0%"></stop>
+            <stop stop-color="#9650FB" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-8" transform="translate(-39.000000, -38.000000)" fill="url(#linearGradient-1)">
+            <path d="M45.4976279,53.2241857 L57.2112657,42.5938316 C58.2629114,41.5434514 58.2629114,39.8476568 57.2112657,38.7972766 C56.1608855,37.7342411 54.4562323,37.7342411 53.4045865,38.7972766 L39.7787505,51.1487356 C39.2092672,51.7182189 38.9586946,52.4775299 39.0055188,53.2241857 C38.9586946,53.9708415 39.2092672,54.7301525 39.7787505,55.2996358 L53.4045865,67.6510948 C54.4562323,68.7141302 56.1608855,68.7141302 57.2112657,67.6510948 C58.2629114,66.6007146 58.2629114,64.90492 57.2112657,63.8545398 L45.4976279,53.2241857" id="Fill-6"></path>
+        </g>
+    </g>
+</svg>
